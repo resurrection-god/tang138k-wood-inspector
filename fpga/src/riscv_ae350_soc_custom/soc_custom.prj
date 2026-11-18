@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-synthesis-project>
+<!--
+  AXI4 plan, stage 0: the SoC with "Customized Data Memory" (AE350_EXT_D_MEM_EN)
+  instead of the built-in DDR3 and Lane 4/5. The other defines were taken from the
+  Shared DDR3 SoC's temp/riscv_ae350_soc/riscv_ae350_config.v (fpga/src/riscv_ae350_soc/,
+  removed 15.10.2026, rollback commit 7ce963e); the copy used is riscv_ae350_config.v here.
+  The SoC's DDR3 IP files are left out: with AE350_EMB_DDR3_EN off they are not needed.
+  16.10.2026 (R-39, ERRORS 5.12): AE350_EMB_SPIFLASH_EN off, AE350_EXT_I_MEM_EN and
+  AE350_EXT_APB_SLAVE_EN on - the flash is served by fpga/src/flash_ctl.v. GowinSynthesis
+  finds the licence only when started from IDE\bin: run a copy of this file with absolute
+  output paths from there.
+-->
+<Project>
+    <Version>beta</Version>
+    <Device id="GW5AST-138B" package="FCPBGA676A" speed="1" partNumber="GW5AST-LV138FPG676AC1/I0"/>
+    <FileList>
+        <File path="C:/Gowin/Gowin_V1.9.12.03_x64/IDE/ipcore/RiscV_AE350_SOC/data/riscv_ae350_top.v" type="verilog"/>
+        <File path="C:/Gowin/Gowin_V1.9.12.03_x64/IDE/ipcore/RiscV_AE350_SOC/data/riscv_ae350_soc.v" type="verilog"/>
+        <File path="C:/Gowin/Gowin_V1.9.12.03_x64/IDE/ipcore/RiscV_AE350_SOC/data/riscv_ae350_flash.v" type="verilog"/>
+        <File path="C:/Gowin/Gowin_V1.9.12.03_x64/IDE/ipcore/RiscV_AE350_SOC/data/gw_dtcm.v" type="verilog"/>
+        <File path="C:/Gowin/Gowin_V1.9.12.03_x64/IDE/ipcore/RiscV_AE350_SOC/data/gw_itcm.v" type="verilog"/>
+    </FileList>
+    <OptionList>
+        <Option type="disable_insert_pad" value="1"/>
+        <Option type="enable_dsrm" value="0"/>
+        <Option type="include_path" value="C:/Users/ryazanov/Documents/andesprojects/fpga/src/riscv_ae350_soc_custom"/>
+        <Option type="include_path" value="C:/Gowin/Gowin_V1.9.12.03_x64/IDE/ipcore/RiscV_AE350_SOC/data"/>
+        <Option type="ip_version" value="1.2"/>
+        <Option type="output_file" value="riscv_ae350_soc_custom.vg"/>
+        <Option type="output_template" value="riscv_ae350_soc_custom_tmp.v"/>
+        <Option type="ram_balance" value="1"/>
+        <Option type="ram_rw_check" value="1"/>
+        <Option type="top_module" value="RiscV_AE350_SOC_Top"/>
+        <Option type="vcc" value="0.9"/>
+        <Option type="vccx" value="1.8"/>
+        <Option type="verilog_language" value="sysv-2017"/>
+    </OptionList>
+</Project>

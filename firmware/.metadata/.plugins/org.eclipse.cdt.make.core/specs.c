@@ -1,0 +1,1 @@
+/* Empty Eclipse CDT specs file */

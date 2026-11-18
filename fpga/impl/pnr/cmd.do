@@ -1,0 +1,25 @@
+-d C:\Users\penis\.gemini\antigravity\scratch\tang138k-wood-inspector\fpga\impl\gwsynthesis\scanner.vg
+-p GW5AST-138B-FCPBGA676A-1
+-pn GW5AST-LV138FPG676AC1/I0
+-cst C:\Users\penis\.gemini\antigravity\scratch\tang138k-wood-inspector\fpga\src\scanner.cst
+-cfg C:\Users\penis\.gemini\antigravity\scratch\tang138k-wood-inspector\fpga\impl\pnr\device.cfg
+-sdc C:\Users\penis\.gemini\antigravity\scratch\tang138k-wood-inspector\fpga\src\scanner.sdc
+-bit
+-tr
+-ph
+-warning_all
+-timing
+-ireg_not_in_iob
+-oreg_not_in_iob
+-ioreg_not_in_iob
+-replicate
+-cst_error
+-convert_sdp32_36_to_sdp16_18
+-place_option 4
+-route_option 1
+-retiming_resource none
+-clock_route_order 1
+-correct_hold 1
+-route_maxfan 23
+-global_freq 100.000
+-enable_dsrm 0

@@ -1,0 +1,22 @@
+# axi_mux_rs: the two-entry register slice (fpga/src/axi_mux.v).
+# Run from fpga/formal:  .\run.ps1 axi_mux_rs
+[tasks]
+prove
+cover
+
+[options]
+prove: mode prove
+prove: depth 6
+cover: mode cover
+cover: depth 16
+
+[engines]
+smtbmc yices
+
+[script]
+read_slang --top axi_mux_rs_fv axi_mux.v axi_mux_rs_fv.sv
+prep -top axi_mux_rs_fv
+
+[files]
+../src/axi_mux.v
+axi_mux_rs_fv.sv

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5AST-138B" pn="GW5AST-LV138FPG676AC1/I0">gw5ast138b-007</Device>
+    <FileList>
+        <File path="src/scanner_top.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_pll/gowin_pll.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_pll_eth/gowin_pll_eth.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_pll_ae350/gowin_pll_ae350.v" type="file.verilog" enable="1"/>
+        <File path="src/gw_ahb_ethernet.v" type="file.verilog" enable="1"/>
+        <File path="src/gw_ahb_ethernet_top.v" type="file.verilog" enable="1"/>
+        <File path="src/riscv_ae350_soc_custom/riscv_ae350_soc_custom.v" type="file.verilog" enable="1"/>
+        <File path="src/triple_speed_ethernet_mac/triple_speed_ethernet_mac.v" type="file.verilog" enable="1"/>
+        <File path="src/scanner.cst" type="file.cst" enable="1"/>
+        <File path="src/scanner.sdc" type="file.sdc" enable="1"/>
+        <File path="src/power_on_reset_sequencer.v" type="file.verilog" enable="1"/>
+        <File path="src/async_fifo_simple.sv" type="file.verilog" enable="1"/>
+        <File path="src/flash_ctl.v" type="file.verilog" enable="1"/>
+        <File path="src/ahb_axi256.v" type="file.verilog" enable="1"/>
+        <File path="src/axi_mux.v" type="file.verilog" enable="1"/>
+        <File path="src/build_id.v" type="file.verilog" enable="1"/>
+        <File path="src/eth_tx_mux.v" type="file.verilog" enable="1"/>
+        <File path="src/apb_ctl.v" type="file.verilog" enable="1"/>
+        <File path="src/apb_ctl_bridge.v" type="file.verilog" enable="1"/>
+        <File path="src/npu_apb_wrapper.v" type="file.verilog" enable="1"/>
+        <File path="src/npu_core.v" type="file.verilog" enable="1"/>
+        <File path="src/ddr3_axi/DDR3_AXI_Top.v" type="file.verilog" enable="1"/>
+    </FileList>
+</Project>

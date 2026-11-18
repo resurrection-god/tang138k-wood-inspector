@@ -1,0 +1,134 @@
+[device]
+name = "gowin_npu_wood"
+bus = "apb"
+base_addr = 0xF8000900
+data_width = 32
+version = "3.0.0"
+
+[[register]]
+name = "ID"
+offset = 0x00
+access = "ro"
+desc = "Хеш карты регистров MAP_HASH (проверка соответствия прошивки и битстрима при init)"
+
+[[register]]
+name = "CTRL"
+offset = 0x04
+access = "rw"
+reset = 0x0000_0000
+desc = "Управление конвейером SIMD-16 INT8 DSP MAC (1600 MMAC/s @ 100 MHz)"
+fields = [
+  { name = "START",      bits = "0",   access = "w1c", desc = "Запуск расчёта слоя из OUT_CH фильтров (самоочищающийся строб)" },
+  { name = "CLEAR",      bits = "1",   access = "w1c", desc = "Сброс аккумулятора и счётчиков" },
+  { name = "RELU_EN",    bits = "2",   access = "rw",  desc = "1=применить аппаратный ReLU к выходу" },
+  { name = "CLAMP_I8",   bits = "3",   access = "rw",  desc = "1=ограничить выход в [-127..127] (или [0..127] при RELU_EN)" },
+  { name = "SHIFT_BITS", bits = "8:4", access = "rw",  desc = "Арифметический сдвиг вправо после накопления (0..31)" },
+  { name = "ROUND_EN",   bits = "9",   access = "rw",  desc = "1=округление к ближайшему (round half up) перед сдвигом" },
+]
+
+[[register]]
+name = "STATUS"
+offset = 0x08
+access = "ro"
+desc = "Статус конвейера NPU"
+fields = [
+  { name = "BUSY", bits = "0", access = "ro", desc = "1=конвейер занят вычислением" },
+  { name = "DONE", bits = "1", access = "ro", desc = "1=вычисление всех OUT_CH завершено" },
+  { name = "OVF",  bits = "2", access = "ro", desc = "1=зафиксировано переполнение 32-битного аккумулятора" },
+]
+
+[[register]]
+name = "DIMS"
+offset = 0x0C
+access = "rw"
+reset = 0x0001_0040
+desc = "Размерность матричного умножения слоя (OUT_CH x VEC_WORDS*4); каждый канал выровнен по 4 словам (16 байт)"
+fields = [
+  { name = "VEC_WORDS", bits = "8:0",   access = "rw", desc = "Длина входного вектора в словах 4xINT8 (1..256)" },
+  { name = "OUT_CH",    bits = "24:16", access = "rw", desc = "Число выходных каналов/нейронов слоя (1..256)" },
+]
+
+[[register]]
+name = "ACT_ADDR"
+offset = 0x10
+access = "rw"
+reset = 0x0000_0000
+desc = "Указатель записи в 4-банковую BSRAM активаций (0..255)"
+fields = [
+  { name = "INDEX", bits = "7:0", access = "rw", desc = "Индекс 32-битного слова активаций" },
+]
+
+[[register]]
+name = "ACT_DATA4_RAW"
+offset = 0x14
+access = "rw"
+reset = 0x0000_0000
+desc = "Запись 4 упакованных активаций int8 {a3, a2, a1, a0} с автоинкрементом ACT_ADDR"
+
+[[register]]
+name = "WGT_ADDR"
+offset = 0x18
+access = "rw"
+reset = 0x0000_0000
+desc = "Указатель записи в 64 КБ 4-банковую BSRAM весов (0..16383)"
+fields = [
+  { name = "INDEX", bits = "13:0", access = "rw", desc = "Индекс 32-битного слова весов (0..16383)" },
+]
+
+[[register]]
+name = "WGT_DATA4_RAW"
+offset = 0x1C
+access = "rw"
+reset = 0x0000_0000
+desc = "Запись 4 упакованных весов int8 {w3, w2, w1, w0} с автоинкрементом WGT_ADDR"
+
+[[register]]
+name = "BIAS_ADDR"
+offset = 0x20
+access = "rw"
+reset = 0x0000_0000
+desc = "Указатель записи в BSRAM смещений слоёв (0..255)"
+fields = [
+  { name = "INDEX", bits = "7:0", access = "rw", desc = "Индекс канала смещения" },
+]
+
+[[register]]
+name = "BIAS_DATA_RAW"
+offset = 0x24
+access = "rw"
+reset = 0x0000_0000
+desc = "Запись знакового смещения канала (int32) с автоинкрементом BIAS_ADDR"
+
+[[register]]
+name = "OUT_ADDR"
+offset = 0x28
+access = "rw"
+reset = 0x0000_0000
+desc = "Указатель чтения выходного буфера (0..255 для int32, 0..63 для packed int8)"
+fields = [
+  { name = "INDEX", bits = "7:0", access = "rw", desc = "Индекс чтения выхода" },
+]
+
+[[register]]
+name = "OUT_DATA_RAW"
+offset = 0x2C
+access = "ro"
+desc = "Чтение результата int32 по OUT_ADDR с автоинкрементом OUT_ADDR"
+
+[[register]]
+name = "OUT_PACKED_RAW"
+offset = 0x30
+access = "ro"
+desc = "Чтение 4 упакованных выходов int8 {y3, y2, y1, y0} по OUT_ADDR с автоинкрементом"
+
+[[register]]
+name = "EXEC_TIME_NS"
+offset = 0x34
+access = "ro"
+desc = "Время выполнения последнего вызова NPU в наносекундах (1 такт 100 МГц = 10 нс)"
+
+[[register]]
+name = "MAC_COUNT"
+offset = 0x38
+access = "ro"
+desc = "Суммарное число выполненных аппаратных операций MAC"

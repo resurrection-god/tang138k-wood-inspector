@@ -1,0 +1,56 @@
+# Gowin intermediate PnR/synthesis build artifacts
+*.pr
+*.binx
+*.p
+*.timing_paths
+*.db
+*.gpa
+fpga/impl/temp/
+fpga/impl/gwsynthesis/
+fpga/impl/pnr/*.bin
+!fpga/impl/scanner_process_config.json
+fpga/impl/pnr/*.binx
+fpga/impl/pnr/*.p
+fpga/impl/pnr/*.db
+fpga/impl/pnr/*.timing_paths
+fpga/impl/pnr/*.html
+fpga/impl/pnr/*.tr
+fpga/scanner.gprj.user
+
+# Firmware intermediates & build outputs (keep final Release binary for direct OTA)
+*.o
+*.d
+*.adx
+*.size
+*.map
+*.elf
+*.bin
+!firmware/Release/output/ae350_scanner.bin
+firmware/Debug/output/
+firmware/Release/*
+!firmware/Release/output/
+firmware/Release/output/*
+!firmware/Release/output/ae350_scanner.bin
+firmware/Release_Lite/
+firmware/.metadata/
+firmware/RemoteSystemsTempFiles/
+firmware/diagnostic/
+symbol_*.txt
+
+# Logs, captures & simulation artifacts (keep NPU demo samples)
+*.log
+*.raw
+*.png
+!tools/npu/samples/*.png
+*.pcap
+*.vvp
+*.vcd
+fpga/sim/obj_*/
+__pycache__/
+*.pyc
+tools/board_host.txt
+
+# Rust TangWood Studio target & large PyTorch checkpoints
+studio/target/
+studio/Cargo.lock
+tools/npu/*.pt

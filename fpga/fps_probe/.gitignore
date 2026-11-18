@@ -1,0 +1,7 @@
+# Всё, что порождает сборка Gowin. Исходники, ограничения, build.tcl и
+# impl/fps_probe_process_config.json — в репозитории; битстрим собирается за
+# полторы минуты и грузится только в SRAM.
+impl/*
+!impl/fps_probe_process_config.json
+*.log
+*.gprj.user

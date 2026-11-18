@@ -1,0 +1,58 @@
+# cam_axi_wr: the camera writer's AXI4 write port (fpga/src/cam_axi_wr.v).
+# Run from fpga/formal:  .\run.ps1 cam_axi_wr [task ...]
+#
+#   real      the parameters cam_channel uses (MAX_WORDS 128, beat FIFO 128,
+#             AW queue 32, AW_AHEAD 1) with the real writer (GAP 4): unbounded
+#             proof by k-induction
+#   real_g1   the same against a harsher writer (first word 1 cycle after the
+#             room sample)
+#   small     scaled queues with the same margin arithmetic (MAX_WORDS 16,
+#             FIFO 8 beats, AW queue 8): a margin that is one short shows up
+#             here too, and the mutation check runs on this one (fast)
+#   bmc       the small configuration from reset, 24 cycles: a counterexample
+#             here is a real trace, not an induction artefact
+#   cover     reachability of the cases the properties are about
+[tasks]
+mid
+small
+real
+bmc
+cover
+
+[options]
+real:    mode prove
+real:    depth 2
+mid:     mode prove
+mid:     depth 2
+small:   mode prove
+small:   depth 2
+bmc:     mode bmc
+bmc:     depth 24
+cover:   mode cover
+cover:   depth 40
+
+[engines]
+# bitwuzla: the induction step that yices did not finish in 10 minutes takes it 25 s
+smtbmc bitwuzla
+
+[script]
+real:    read_slang --top cam_axi_wr_fv -G MAX_WORDS=128 -G WQ_LOG2=7 -G AQ_LOG2=5 -G GAP=1 cam_axi_wr.v cam_axi_wr_fv.sv
+mid:     read_slang --top cam_axi_wr_fv -G MAX_WORDS=32 -G WQ_LOG2=4 -G AQ_LOG2=4 -G GAP=1 cam_axi_wr.v cam_axi_wr_fv.sv
+small:   read_slang --top cam_axi_wr_fv -G MAX_WORDS=16 -G WQ_LOG2=3 -G AQ_LOG2=3 -G GAP=1 cam_axi_wr.v cam_axi_wr_fv.sv
+bmc:     read_slang --top cam_axi_wr_fv -G MAX_WORDS=16 -G WQ_LOG2=3 -G AQ_LOG2=3 -G GAP=1 cam_axi_wr.v cam_axi_wr_fv.sv
+cover:   read_slang --top cam_axi_wr_fv -G MAX_WORDS=16 -G WQ_LOG2=3 -G AQ_LOG2=3 -G GAP=1 cam_axi_wr.v cam_axi_wr_fv.sv
+prep -top cam_axi_wr_fv
+# Flops without a reset (data registers, FIFO memories) start at 0 instead of
+# anything: then the 30 data bits per word the harness ties to 0 are constant
+# flops, and opt removes them. This narrows only the reset state (BMC, cover);
+# k-induction starts from any state. Unwritten lanes cannot hide behind the
+# zeros: their strobes are checked, not their data.
+memory_map
+setundef -zero -init
+opt -fast
+opt_dff
+opt_clean
+
+[files]
+../src/cam_axi_wr.v
+cam_axi_wr_fv.sv

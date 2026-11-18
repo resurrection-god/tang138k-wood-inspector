@@ -1,0 +1,6 @@
+# Everything the Gowin build produces. Sources, constraints and build.tcl are
+# tracked; the bitstream builds in minutes and is only ever loaded into SRAM.
+impl/*
+*.log
+*.gprj.user
+sim/out*/

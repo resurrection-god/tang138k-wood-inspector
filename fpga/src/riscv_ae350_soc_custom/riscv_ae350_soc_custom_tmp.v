@@ -1,0 +1,89 @@
+//Copyright (C)2014-2026 Gowin Semiconductor Corporation.
+//All rights reserved.
+//File Title: Template file for instantiation
+//Tool Version: V1.9.12.03 (64-bit)
+//IP Version: 1.2
+//Part Number: GW5AST-LV138FPG676AC1/I0
+//Device: GW5AST-138
+//Device Version: B
+//Created Time: Fri Oct 16 15:41:20 2026
+
+//Change the instance name and port connections to the signal names
+//--------Copy here to design--------
+
+	RiscV_AE350_SOC_Top your_instance_name(
+		.ROM_HRDATA(ROM_HRDATA), //input [31:0] ROM_HRDATA
+		.ROM_HREADY(ROM_HREADY), //input ROM_HREADY
+		.ROM_HRESP(ROM_HRESP), //input ROM_HRESP
+		.ROM_HADDR(ROM_HADDR), //output [31:0] ROM_HADDR
+		.ROM_HTRANS(ROM_HTRANS), //output [1:0] ROM_HTRANS
+		.ROM_HWRITE(ROM_HWRITE), //output ROM_HWRITE
+		.ROM_HCLK(ROM_HCLK), //output ROM_HCLK
+		.ROM_HRSTN(ROM_HRSTN), //output ROM_HRSTN
+		.DDR_HRDATA(DDR_HRDATA), //input [63:0] DDR_HRDATA
+		.DDR_HREADY(DDR_HREADY), //input DDR_HREADY
+		.DDR_HRESP(DDR_HRESP), //input DDR_HRESP
+		.DDR_HADDR(DDR_HADDR), //output [31:0] DDR_HADDR
+		.DDR_HBURST(DDR_HBURST), //output [2:0] DDR_HBURST
+		.DDR_HPROT(DDR_HPROT), //output [3:0] DDR_HPROT
+		.DDR_HSIZE(DDR_HSIZE), //output [2:0] DDR_HSIZE
+		.DDR_HTRANS(DDR_HTRANS), //output [1:0] DDR_HTRANS
+		.DDR_HWDATA(DDR_HWDATA), //output [63:0] DDR_HWDATA
+		.DDR_HWRITE(DDR_HWRITE), //output DDR_HWRITE
+		.DDR_HCLK(DDR_HCLK), //output DDR_HCLK
+		.DDR_HRSTN(DDR_HRSTN), //output DDR_HRSTN
+		.TCK_IN(TCK_IN), //input TCK_IN
+		.TMS_IN(TMS_IN), //input TMS_IN
+		.TRST_IN(TRST_IN), //input TRST_IN
+		.TDI_IN(TDI_IN), //input TDI_IN
+		.TDO_OUT(TDO_OUT), //output TDO_OUT
+		.TDO_OE(TDO_OE), //output TDO_OE
+		.EXT_INT(EXT_INT), //input [15:0] EXT_INT
+		.EXTS_HRDATA(EXTS_HRDATA), //input [31:0] EXTS_HRDATA
+		.EXTS_HREADYIN(EXTS_HREADYIN), //input EXTS_HREADYIN
+		.EXTS_HRESP(EXTS_HRESP), //input EXTS_HRESP
+		.EXTS_HADDR(EXTS_HADDR), //output [31:0] EXTS_HADDR
+		.EXTS_HBURST(EXTS_HBURST), //output [2:0] EXTS_HBURST
+		.EXTS_HPROT(EXTS_HPROT), //output [3:0] EXTS_HPROT
+		.EXTS_HSEL(EXTS_HSEL), //output EXTS_HSEL
+		.EXTS_HSIZE(EXTS_HSIZE), //output [2:0] EXTS_HSIZE
+		.EXTS_HTRANS(EXTS_HTRANS), //output [1:0] EXTS_HTRANS
+		.EXTS_HWDATA(EXTS_HWDATA), //output [31:0] EXTS_HWDATA
+		.EXTS_HWRITE(EXTS_HWRITE), //output EXTS_HWRITE
+		.EXTS_HCLK(EXTS_HCLK), //output EXTS_HCLK
+		.EXTS_HRSTN(EXTS_HRSTN), //output EXTS_HRSTN
+		.APB_PRDATA(APB_PRDATA), //input [31:0] APB_PRDATA
+		.APB_PREADY(APB_PREADY), //input APB_PREADY
+		.APB_PSLVERR(APB_PSLVERR), //input APB_PSLVERR
+		.APB_PADDR(APB_PADDR), //output [31:0] APB_PADDR
+		.APB_PENABLE(APB_PENABLE), //output APB_PENABLE
+		.APB_PSEL(APB_PSEL), //output APB_PSEL
+		.APB_PWDATA(APB_PWDATA), //output [31:0] APB_PWDATA
+		.APB_PWRITE(APB_PWRITE), //output APB_PWRITE
+		.APB_PPROT(APB_PPROT), //output [2:0] APB_PPROT
+		.APB_PSTRB(APB_PSTRB), //output [3:0] APB_PSTRB
+		.APB_PCLK(APB_PCLK), //output APB_PCLK
+		.APB_PRSTN(APB_PRSTN), //output APB_PRSTN
+		.I2C_SCL(I2C_SCL), //inout I2C_SCL
+		.I2C_SDA(I2C_SDA), //inout I2C_SDA
+		.UART2_TXD(UART2_TXD), //output UART2_TXD
+		.UART2_RTSN(UART2_RTSN), //output UART2_RTSN
+		.UART2_RXD(UART2_RXD), //input UART2_RXD
+		.UART2_CTSN(UART2_CTSN), //input UART2_CTSN
+		.UART2_DCDN(UART2_DCDN), //input UART2_DCDN
+		.UART2_DSRN(UART2_DSRN), //input UART2_DSRN
+		.UART2_RIN(UART2_RIN), //input UART2_RIN
+		.UART2_DTRN(UART2_DTRN), //output UART2_DTRN
+		.UART2_OUT1N(UART2_OUT1N), //output UART2_OUT1N
+		.UART2_OUT2N(UART2_OUT2N), //output UART2_OUT2N
+		.GPIO(GPIO), //inout [31:0] GPIO
+		.CORE_CLK(CORE_CLK), //input CORE_CLK
+		.DDR_CLK(DDR_CLK), //input DDR_CLK
+		.AHB_CLK(AHB_CLK), //input AHB_CLK
+		.APB_CLK(APB_CLK), //input APB_CLK
+		.RTC_CLK(RTC_CLK), //input RTC_CLK
+		.POR_RSTN(POR_RSTN), //input POR_RSTN
+		.HW_RSTN(HW_RSTN) //input HW_RSTN
+	);
+
+//--------Copy end-------------------

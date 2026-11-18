@@ -1,0 +1,21 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5AST-138B" pn="GW5AST-LV138FPG676AC1/I0">gw5ast138b-007</Device>
+    <FileList>
+        <File path="src/udp_probe_top.v" type="file.verilog" enable="1"/>
+        <File path="src/probe_udp_gen.v" type="file.verilog" enable="1"/>
+        <File path="src/probe_tx_mux.v" type="file.verilog" enable="1"/>
+        <File path="src/probe_rx.v" type="file.verilog" enable="1"/>
+        <File path="src/probe_ahb.v" type="file.verilog" enable="1"/>
+        <File path="../fps_probe/src/uart.v" type="file.verilog" enable="1"/>
+        <File path="../src/gowin_pll_eth/gowin_pll_eth.v" type="file.verilog" enable="1"/>
+        <File path="../src/gw_ahb_ethernet.v" type="file.verilog" enable="1"/>
+        <File path="../src/gw_ahb_ethernet_top.v" type="file.verilog" enable="1"/>
+        <File path="../src/triple_speed_ethernet_mac/triple_speed_ethernet_mac.v" type="file.verilog" enable="1"/>
+        <File path="udp_probe.cst" type="file.cst" enable="1"/>
+        <File path="udp_probe.sdc" type="file.sdc" enable="1"/>
+    </FileList>
+</Project>

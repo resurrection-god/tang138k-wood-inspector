@@ -1,0 +1,16 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5AST-138B" pn="GW5AST-LV138FPG676AC1/I0">gw5ast138b-007</Device>
+    <FileList>
+        <File path="src/fps_probe_top.v" type="file.verilog" enable="1"/>
+        <File path="src/cam_i2c_seq.v" type="file.verilog" enable="1"/>
+        <File path="src/uart.v" type="file.verilog" enable="1"/>
+        <File path="../src/gowin_mipi_dphy_rx4.v" type="file.verilog" enable="1"/>
+        <File path="../src/camera_csi2_raw8_stream_bridge.sv" type="file.verilog" enable="1"/>
+        <File path="fps_probe.cst" type="file.cst" enable="1"/>
+        <File path="fps_probe.sdc" type="file.sdc" enable="1"/>
+    </FileList>
+</Project>
