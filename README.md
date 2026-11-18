@@ -39,6 +39,7 @@
 - **FP32 (`Ep 7/7`):** `cell = 96.33%`, `board_defect = 95.63%`, `mean_recall = 83.24%` (`[97.3 / 78.3 / 73.7 / 85.0 / 81.9]`).
 - **Folded INT8 QAT (`3 epochs`):** `cell = 96.26%`, `board_defect = 95.32%`, `mean_recall = 82.77%` (`[97.2 / 75.8 / 76.4 / 81.7 / 82.7]`).
 - **Bit-exact `SIMD-16` эмулятор (120 отложенных досок):** `cell = 95.49%`, `board_defect = 111/120 (92.5%)` (`[96.8 / 60.9 / 67.1 / 68.6 / 77.6]`).
+- **Живой прогон на Tang Mega 138K Pro (`10.0.0.222:5555`):** `10/10` досок (`4` реальных + `6` синтетических) с **`max_logit_diff = 0`** против эмулятора! Аппаратное время NPU = **`54.41 ms`** (`0.397 GMAC/s`), полный инференс с depthwise 3×3 на AE350 = **`182–185 ms`**, сетевой RTT = **`213–216 ms`**.
 
 ---
 
@@ -62,6 +63,7 @@ cargo run --release
 powershell -ExecutionPolicy Bypass -File tools\board\run_sram.ps1 -SkipBuild -UsbLocation 4641
 
 # 2. Через ~15 секунд (подъём Ethernet 10.0.0.222) прошить OTA Slot B прошивкой:
+$env:PYTHONPATH = "."
 python tools\board\ota_upload.py --host 10.0.0.222 --bin firmware\Release\output\ae350_scanner.bin
 
 # 3. Прогнать автоматический бит-точный тест живой платы по UDP :5555:
